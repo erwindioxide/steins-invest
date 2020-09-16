@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#124735" />
+    <meta name="title" content="Rampver Financials | Fund Details" />
+    <meta name="description"
+        content="Find the best Mutual Fund investments for as low as ₱1,000 with Rampver Financials. Largest mutual fund distrubutor in the Philippines." />
+    <meta property="og:title" content="Mutual Fund Investments | Rampver Financials" />
+    <meta property="og:description" content="Find the best Mutual Fund investments for as low as ₱1,000!" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="https://i.ibb.co/3k60mhS/specific.png" />
+    <meta property="og:site_name" content="Rampver Financials" />
+    <meta property="og:type" content="article" />
+    <title>Rampver Financials | Invest in Mutual Funds today!</title>
+    <link rel="icon" href="../img/favicon.png" type="image/png" sizes="16x20" />
+    <link rel="stylesheet" href="../dependencies/bootstrap.min.css" />
+    <link rel="stylesheet" src="../styles/style.css" href="../styles/style.css" />
+    <script type="text/javascript" src="../dependencies/handlebars.min.js"></script>
+    <script type="text/javascript" src="../dependencies/jquery.min.js"></script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js',
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PG4287G');
+    </script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body data-instant-intensity="viewport">
+    <!-- navbar -->
+    <div id="navbarSet"></div>
+    <script src="../components/navbar.js"></script>
+    <!-- navbar -->
+
+    <div class="container mt-4">
+        <!-- topAlert -->
+        <div id="topAlert"></div>
+        <script src=" ../components/topAlert.js"> </script>
+        <!-- topAlert -->
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="pl-4 pr-4">
+                    <h3 class="claimHeader text-center font-weight-bolder" id="fundtitle" "></h3>
+                    <br />
+                    <p class=" text-center">
+                        <img id="imageurl" class="lazyload detailimg rounded" />
+                        </p>
+
+                        <!-- social share addthis -->
+                        <div class="addthis_inline_share_toolbox_vxvg mt-4"></div>
+                        <script type=" text/javascript"
+                            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e108780a32cd784">
+                        </script>
+                        <!-- social share addthis -->
+                        <!-- share via QR Code -->
+                        <div id="shareQR_indivFund" class="mt-3"></div>
+                        <script src=" ../components/shareQR_indivFund.js"> </script>
+                        <!-- share via QR Code -->
+
+                        <!-- Calendly link widget begin -->
+                        <link href="../dependencies/calendly_widget.css" rel="stylesheet" />
+                        <script src="../dependencies/calendly_widget.js"></script>
+                        <a href="" class="btn btn-sm rfbtn text-white mb-3"
+                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/rampver/schedule-appointment'});return false;">Schedule
+                            a Call</a>
+                        <!-- Calendly link widget end -->
+
+                        <div class="d-flex mt-3">
+                            <p class=" claimHeader">Price Per Share:</p>
+                            &nbsp;&nbsp;
+                            <p class="claimHeader" id="navps"></p>
+                        </div>
+                        <div class="d-flex">
+                            <p class=" claimHeader">Year-to-Date (YTD):</p>
+                            &nbsp;&nbsp;
+                            <p class="font-weight-bold claimHeader" id="ytdtop"></p>
+                        </div>
+                        <br />
+                        <div class="">
+                            <h5 class=" claimHeader">Fund Preview</h5>
+                            <hr />
+                            <p id="introduction" class="text-justify"></p>
+                            <p id="description" class="text-justify"></p>
+                        </div>
+                        <br />
+                        <div ">
+                        <h5 class=" claimHeader">Fund Suitability</h5>
+                            <hr />
+                            <p class="claimHeader">This fund is for you if:</p>
+                            <div class="d-flex">
+                                <i class="fas fa-check-circle claimHeader mr-3 mt-2"></i>
+                                <p id="ffy1" class="text-justify"></p>
+                            </div>
+                            <div class="d-flex">
+                                <i class="fas fa-check-circle claimHeader mr-3 mt-2"></i>
+                                <p id="ffy2" class="text-justify"></p>
+                            </div>
+                            <div class="d-flex">
+                                <i class="fas fa-check-circle claimHeader mr-3 mt-2"></i>
+                                <p id="ffy3" class="text-justify"></p>
+                            </div>
+                        </div>
+                </div>
+                <br />
+                <div class="container">
+                    <h5 class=" claimHeader">Fund Details</h5>
+                    <br />
+                    <table class="table table-hover">
+                        <tr>
+                            <td>
+                                <small class="claimHeader">Mutual Fund Type</small>
+                            </td>
+                            <td><small id="type"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Fund Manager</small></td>
+                            <td><small id="fundmanagername"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Year-to-Date Return</small></td>
+                            <td><small id="ytd"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Risk Profile</small></td>
+                            <td><small id="riskprofile"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Currency</small></td>
+                            <td><small id="currency"></small></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small class="claimHeader">Minimum Initial Investment</small>
+                            </td>
+                            <td><small id="initial"></small></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small class="claimHeader">Minimum Additional Investment</small>
+                            </td>
+                            <td><small id="additional"></small></td>
+                        </tr>
+                        <tr>
+                            <td class="claimHeader">
+                                <small class="claimHeader">Recommended length of stay</small>
+                            </td>
+                            <td><small id="timehorizon"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Inception Date</small></td>
+                            <td><small id="inception"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Management Fee</small></td>
+                            <td><small id="managementfee"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Entry Fee Range</small></td>
+                            <td><small id="salesload"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Holding Period</small></td>
+                            <td><small id="holdingperiod"></small></td>
+                        </tr>
+                        <tr>
+                            <td><small class="claimHeader">Early Redemption Fee</small></td>
+                            <td><small id="exitfee"></small></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <!-- HIGHSTOCKS -->
+                <div class="container mt-3 mb-2">
+                    <div id="navChart" style="height: 400px; min-width: 310px;"></div>
+                </div>
+                <!-- HIGHSTOCKS -->
+                <br />
+                <!-- HIGHCHART-->
+                <div class="mb-3">
+                    <div id="assetAllocation" style="height: 350px; min-width: 290px;"></div>
+                </div>
+                <!-- HIGHCHART-->
+                <br>
+                <div class="container">
+                    <h4 class=" claimHeader text-center"> Fund Resources</h4>
+                    <ul class="mt-3">
+                        <li class="" style="list-style-type: none;">
+                            <h6 class="claimHeader">
+                                <a href="" id="prospectuslink" class="claimHeader" target="_blank">Mutual Fund
+                                    Prospectus</a>
+                            </h6>
+                        </li>
+                        <li class="" style="list-style-type: none;">
+                            <h6 class="claimHeader">
+                                <a href="" id="ffslink" class="claimHeader" target="_blank">Latest Fund Fact Sheet</a>
+                            </h6>
+                        </li>
+                        <li class="" style="list-style-type: none;">
+                            <h6 class="claimHeader">
+                                <a id="forms" href="../support/forms.html" class="claimHeader">Application Forms and
+                                    Guidelines</a>
+                            </h6>
+                        </li>
+                        <li class="" style="list-style-type: none;">
+                            <h6 class="claimHeader">
+                                <a href id="soalink" class="claimHeader" data-toggle="modal"
+                                    data-target="#soarequest">Statement of Account Request</a>
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- SOA Modal -->
+                <div id="indivSoaSet"></div>
+                <script src="../components/indivSoa.js"></script>
+                <!-- SOA Modal -->
+                <br />
+                <!-- stein gallery -->
+                <!-- <div class="px-4 m-0">
+                    <h4 class="claimHeader text-center">
+                        Must Watch!
+                    </h4>
+                    <br>
+                    <style>
+                        .embed-container {
+                            position: relative;
+                            padding-bottom: 56.25%;
+                            height: 0;
+                            overflow: hidden;
+                            max-width: 100%;
+                        }
+
+                        .embed-container iframe,
+                        .embed-container object,
+                        .embed-container embed {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                    <div data-stein-url="https://api.steinhq.com/v1/storages/5ee860c983c30d0425e2c4ea/youtube"
+                        data-stein-limit="3">
+                        <div class='embed-container'><iframe src='{{vidEmbed}}' frameborder='0'
+                                allowfullscreen></iframe>
+                        </div>
+                        <a href="{{vidUrl}}" target="_blank">
+                            <h6 class="claimHeader text-center mb-4 mt-2 ml-2">{{vidTitle}}</h6>
+                        </a>
+                    </div>
+                </div> -->
+                <!-- stein gallery -->
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- INQUIRE BUTTON -->
+    <div id="fundInqBtnSet"></div>
+    <script src="../components/fundInqBtn.js"></script>
+    <!-- INQUIRE BUTTON -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+    <script src="../components/footer.js"></script>
+    <!-- footer -->
+
+    <!-- cookie consent -->
+    <div id="cookieconsent"></div>
+    <link rel="stylesheet" href="../dependencies/cookieconsent.min.css" />
+    <script src="../dependencies/cookieconsent.min.js"></script>
+    <script src="../js/cookieconsent.js"></script>
+    <!-- cookie consent -->
+
+    <!-- HIGHSTOCKS -->
+    <script src="../dependencies/highstocks/highstock.js"></script>
+    <script src="../dependencies/highstocks/data.js"></script>
+    <script src="../dependencies/highstocks/exporting.js"></script>
+    <script src="../dependencies/highstocks/accessibility.js"></script>
+    <!-- HIGHSTOCKS -->
+
+    <script src="../js/validator.js"></script>
+    <script src="../js/urlparser.js"></script>
+    <script src="../dependencies/lazysizes.min.js"></script>
+
+    <!-- share on texthighlight -->
+    <script src="../dependencies/sharect/sharect.js"></script>
+    <script src="../dependencies/sharect/sharectconfig.js"></script>
+    <!-- share on texthighlight -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PG4287G" height="0" width="0"
+            style="display: none; visibility: hidden;"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- stein expedite -->
+    <!-- <script src="https://unpkg.com/stein-expedite@0.0.4/dist/index.js"></script> -->
+    <!-- stein expedite -->
+
+    <script src="../dependencies/popper.min.js"></script>
+    <script src="../dependencies/bootstrap.min.js"></script>
+    <script src="../dependencies/font-awesome.js"></script>
+    <script src="//instant.page/5.1.0" type="module"
+        integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+</body>
+
+</html>
