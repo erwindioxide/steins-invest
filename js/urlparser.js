@@ -18,119 +18,61 @@ function getUrlVars() {
 let code = getUrlVars()['fundmanagercode'].toLowerCase();
 let codeBig = getUrlVars()['fundmanagercode'];
 let id = getUrlVars()['fid'];
-let app = document.querySelector('.app');
-let api = 'https://v2-api.sheety.co/rampverfinancials/mfapi/' + code + '/' + id;
-
 // concat api selector
-let renderData = 'json.' + code;
+let api = String('https://api.steinhq.com/v1/storages/5f5ed08d5d3cdc44fcd7d483/' + code + '?search={"fid":"' + id + '"}')
 
 // assign api data to HTML IDs
 function dataFill(json) {
-  document
-    .querySelector('meta[property="og:title"]')
-    .setAttribute('content', document.title);
-  document
-    .querySelector('meta[name="description"]')
-    .setAttribute('content', eval(renderData + '.description'));
-  document
-    .querySelector('meta[property="og:url"]')
-    .setAttribute('content', window.location.href);
-  document.title = eval(renderData + '.fundname') + ' | Fund Details';
-  document.getElementById('fundtitle').innerHTML = eval(
-    renderData + '.fundname'
-  );
-  document.getElementById('imageurl').src = eval(renderData + '.imageurl');
-  document.getElementById('fundQR').src =
-    'https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=256141&data=https://invest.rampver.com/fund-details.html?fundmanagercode=' +
-    codeBig +
-    '%26fid=' +
-    id;
-  document.getElementById('downloadQR').href =
-    'https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&color=256141&data=https://invest.rampver.com/fund-details.html?fundmanagercode=' +
-    codeBig +
-    '%26fid=' +
-    id;
-  document.getElementById('QRName').innerHTML = eval(renderData + '.fundname');
-  document.getElementById('downloadQR').download = eval(renderData + '.fundname');
-  let lazyload = eval(renderData + '.imageurl');
-  document.getElementById('imageurl').setAttribute('data-src', lazyload);
-  document.getElementById('navps').innerHTML = eval(renderData + '.navps');
-  document.getElementById('ytdtop').innerHTML = eval(renderData + '.ytd');
-  document.getElementById('introduction').innerHTML = eval(
-    renderData + '.introduction'
-  );
-  document.getElementById('description').innerHTML = eval(
-    renderData + '.description'
-  );
-  document.getElementById('ffy1').innerHTML = eval(renderData + '.ffy1');
-  document.getElementById('ffy2').innerHTML = eval(renderData + '.ffy2');
-  document.getElementById('ffy3').innerHTML = eval(renderData + '.ffy3');
-  document.getElementById('type').innerHTML = eval(renderData + '.type');
-  document.getElementById('fundmanagername').innerHTML = eval(
-    renderData + '.fundmanagername'
-  );
-  document.getElementById('ytd').innerHTML = eval(renderData + '.ytd');
-  document.getElementById('riskprofile').innerHTML = eval(
-    renderData + '.riskprofile'
-  );
-  document.getElementById('currency').innerHTML = eval(
-    renderData + '.currency'
-  );
-  document.getElementById('initial').innerHTML = eval(renderData + '.initial');
-  document.getElementById('additional').innerHTML = eval(
-    renderData + '.additional'
-  );
-  document.getElementById('timehorizon').innerHTML = eval(
-    renderData + '.timehorizon'
-  );
-  document.getElementById('inception').innerHTML = eval(
-    renderData + '.inception'
-  );
-  document.getElementById('managementfee').innerHTML = eval(
-    renderData + '.managementfee'
-  );
-  document.getElementById('salesload').innerHTML = eval(
-    renderData + '.salesload'
-  );
-  document.getElementById('holdingperiod').innerHTML = eval(
-    renderData + '.holdingperiod'
-  );
-  document.getElementById('exitfee').innerHTML = eval(renderData + '.exitfee');
-  document.getElementById('prospectuslink').href = eval(
-    renderData + '.prospectuslink'
-  );
-  document.getElementById('ffslink').href = eval(renderData + '.ffslink');
+  document.querySelector('meta[property="og:title"]').setAttribute('content', document.title);
+  document.querySelector('meta[name="description"]').setAttribute('content', json[0].description);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+  document.title = json[0].fundname + ' | Fund Details';
+  document.getElementById('fundtitle').innerHTML = json[0].fundname;
+  document.getElementById('imageurl').src = json[0].imageurl
+  document.getElementById('fundQR').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=256141&data=https://invest.rampver.com/fund-details.html?fundmanagercode=' + codeBig + '%26fid=' + id;
+  document.getElementById('downloadQR').href = 'https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&color=256141&data=https://invest.rampver.com/fund-details.html?fundmanagercode=' + codeBig + '%26fid=' + id;
+  document.getElementById('QRName').innerHTML = json[0].fundname;
+  document.getElementById('downloadQR').download = json[0].fundname;
+  document.getElementById('imageurl').setAttribute('data-src', json[0].imageurl);
+  document.getElementById('navps').innerHTML = json[0].navps;
+  document.getElementById('ytdtop').innerHTML = json[0].ytd;
+  document.getElementById('introduction').innerHTML = json[0].introduction;
+  document.getElementById('description').innerHTML = json[0].description;
+  document.getElementById('ffy1').innerHTML = json[0].ffy1;
+  document.getElementById('ffy2').innerHTML = json[0].ffy2;
+  document.getElementById('ffy3').innerHTML = json[0].ffy3;
+  document.getElementById('type').innerHTML = json[0].type;
+  document.getElementById('fundmanagername').innerHTML = json[0].fundmanagername;
+  document.getElementById('ytd').innerHTML = json[0].ytd;
+  document.getElementById('riskprofile').innerHTML = json[0].riskprofile;
+  document.getElementById('currency').innerHTML = json[0].currency;
+  document.getElementById('initial').innerHTML = json[0].initial;
+  document.getElementById('additional').innerHTML = json[0].additional;
+  document.getElementById('timehorizon').innerHTML = json[0].timehorizon;
+  document.getElementById('inception').innerHTML = json[0].inception;
+  document.getElementById('managementfee').innerHTML = json[0].managementfee;
+  document.getElementById('salesload').innerHTML = json[0].salesload;
+  document.getElementById('holdingperiod').innerHTML = json[0].holdingperiod;
+  document.getElementById('exitfee').innerHTML = json[0].exitfee;
+  document.getElementById('prospectuslink').href = json[0].prospectuslink;
+  document.getElementById('ffslink').href = json[0].ffslink;
   // document.getElementById('profilelink').href = code + '.html#profilelink';
   document.getElementById('forms').href = "https://rampver.com/forms";
-  document.getElementById('fundnamevalue').value = eval(
-    renderData + '.fundname'
-  );
-  document.getElementById('prospectus').value = eval(
-    renderData + '.prospectuslink'
-  );
-  document.getElementById('ffs').value = eval(renderData + '.ffslink');
-  document.getElementById('initialamt').value = eval(renderData + '.initial');
-  document.getElementById('additionalamt').value = eval(
-    renderData + '.additional'
-  );
+  document.getElementById('fundnamevalue').value = json[0].fundname;
+  document.getElementById('prospectus').value = json[0].prospectuslink;
+  document.getElementById('ffs').value = json[0].ffslink;
+  document.getElementById('initialamt').value = json[0].initial;
+  document.getElementById('additionalamt').value = json[0].additional;
   document.getElementById('urlGet').value = document.referrer;
-  document.getElementById('imgGet').value = eval(renderData + '.imageurl');
-  document.getElementById('suitability').value = eval(
-    renderData + '.riskprofile'
-  );
-  document.getElementById('intro_email').value = eval(
-    renderData + '.introduction'
-  );
-  document.getElementById('reason1').value = eval(renderData + '.ffy1');
-  document.getElementById('reason2').value = eval(renderData + '.ffy2');
-  document.getElementById('reason3').value = eval(renderData + '.ffy3');
-  document.getElementById('fundnamesoa').innerHTML = eval(
-    renderData + '.fundname'
-  );
-  document.getElementById('soafundname').value = eval(renderData + '.fundname');
-  document.getElementById('guidelines').value = eval(
-    renderData + '.guidelinespdf'
-  );
+  document.getElementById('imgGet').value = json[0].imageurl;
+  document.getElementById('suitability').value = json[0].riskprofile;
+  document.getElementById('intro_email').value = json[0].introduction;
+  document.getElementById('reason1').value = json[0].ffy1;
+  document.getElementById('reason2').value = json[0].ffy2;
+  document.getElementById('reason3').value = json[0].ffy3;
+  document.getElementById('fundnamesoa').innerHTML = json[0].fundname;
+  document.getElementById('soafundname').value = json[0].fundname;
+  document.getElementById('guidelines').value = json[0].gyidelinespdf;
 
   // Highstocks
   let chart = Highcharts.stockChart('navChart', {
@@ -139,7 +81,7 @@ function dataFill(json) {
     },
     data: {
       googleSpreadsheetKey: '1ymjfcHNL645si4rWH5wlLg0oKVPKH7M4IxUwiPTDDQU',
-      googleSpreadsheetWorksheet: eval(renderData + '.navchart'),
+      googleSpreadsheetWorksheet: json[0].navchart,
     },
     plotOptions: {
       line: {
@@ -267,7 +209,7 @@ function dataFill(json) {
     },
     data: {
       googleSpreadsheetKey: '1RqnsW6uBsF6_hsWGNuSQsPPcXB-GAYSnH8eDmTN7XXw',
-      googleSpreadsheetWorksheet: eval(renderData + '.navchart'),
+      googleSpreadsheetWorksheet: json[0].navchart,
       sliced: true
     },
   });
