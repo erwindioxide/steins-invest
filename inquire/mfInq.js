@@ -17,22 +17,22 @@ function getUrlVars() {
 }
 
 let id = getUrlVars()['id'];
-let api = 'https://v2-api.sheety.co/rampverfinancials/campaignsDb/mfCampaigns/' + id;
+let api = String('https://api.steinhq.com/v1/storages/5f6c08c75d3cdc44fcd7d504/mfCampaigns?search={"id":"' + id + '"}')
 
 // assign api data to HTML IDs
 function dataFill(json) {
-	document.getElementById('imageTarget').setAttribute('src', json.mfCampaign.imageurl);
-	document.getElementById('titleTarget').innerHTML = json.mfCampaign.campaignTitle;
-	document.getElementById('firstBlockTarget').innerHTML = json.mfCampaign.firstBlock;
-	document.getElementById('secondBlockTarget').innerHTML = json.mfCampaign.secondBlock;
-	document.getElementById('thirdBlockTarget').innerHTML = json.mfCampaign.thirdBlock;
-	document.getElementById('formTarget').setAttribute('action', json.mfCampaign.formLink);
-	document.getElementById('campaignTitleEntry').value = json.mfCampaign.campaignTitle;
-	document.getElementById('promotedFund').value = json.mfCampaign.promotedFund;
-	document.getElementById('otherTags').value = json.mfCampaign.otherTags;
-	document.getElementById('_wpcf7').value = json.mfCampaign.wpcf7;
-	document.getElementById('_wpcf7_unit_tag').value = json.mfCampaign.wpcf7UnitTag;
-	document.getElementById('_wpcf7_version').value = json.mfCampaign.wpcf7Version;
+	document.getElementById('imageTarget').setAttribute('src', json[0].imageurl);
+	document.getElementById('titleTarget').innerHTML = json[0].campaignTitle;
+	document.getElementById('firstBlockTarget').innerHTML = json[0].firstBlock;
+	document.getElementById('secondBlockTarget').innerHTML = json[0].secondBlock;
+	document.getElementById('thirdBlockTarget').innerHTML = json[0].thirdBlock;
+	document.getElementById('formTarget').setAttribute('action', json[0].formLink);
+	document.getElementById('campaignTitleEntry').value = json[0].campaignTitle;
+	document.getElementById('promotedFund').value = json[0].promotedFund;
+	document.getElementById('otherTags').value = json[0].otherTags;
+	document.getElementById('_wpcf7').value = json[0].wpcf7;
+	document.getElementById('_wpcf7_unit_tag').value = json[0].wpcf7UnitTag;
+	document.getElementById('_wpcf7_version').value = json[0].wpcf7Version;
 }
 
 // fill data
